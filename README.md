@@ -4,6 +4,8 @@ keymap switcher for Vim
 
 ![ScreenCast](/doc/screencast.gif)
 
+_( Using [lightline](https://github.com/itchyny/lightline.vim) for statusline. )_
+
 ## Install
 
 - VimPlug
