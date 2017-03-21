@@ -14,11 +14,11 @@ Plug 'nonylene/vim-keymaps'
 ```vim
 " map any key to <Plug>KeyMapRotate
 map <C-k> <Plug>KeyMapRotate
-map! <C-k> <Plug>KeyMapRotate
+imap <C-k> <Plug>KeyMapRotate
 
-" map <Plug>KeyMapSet_<name> to change explicit keymap
-map <C-s> <Plug>KeyMapSet_second
-map <C-p> <Plug>KeyMapSet_paste
+" call function to change explicit keymap
+noremap <silent> <script> <C-u> :call KeyMapSetName("US")<CR>
+noremap! <expr> <C-u> KeyMapSetName("US")
 
 " If you use paste mode, this is recommended
 set pastetoggle=<C-k>

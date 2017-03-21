@@ -20,8 +20,9 @@ let g:loaded_keymaps = 1
 "   noremap! <unique> <C-k> <Plug>KeyMapRotate
 " endif
 
-noremap <unique> <silent> <script> <Plug>KeyMapRotate :call KeyMapRotate()<CR>
-noremap! <expr> <unique> <script> <Plug>KeyMapRotate KeyMapRotate()
+" cnoremap <unique> <silent> <script> <Plug>KeyMapRotate <CR>:call KeyMapRotate()<CR>
+noremap <unique> <silent> <script> <Plug>KeyMapRotate :<C-u>call KeyMapRotate()<CR>
+noremap! <expr> <unique> <Plug>KeyMapRotate KeyMapRotate()
 
 " autocmd
 augroup keymaps
@@ -125,14 +126,7 @@ function! s:init()
 
   for index in range(0, len(g:keymaps) - 1)
     let l:keymap = g:keymaps[index]
-    let l:esc_name = fnameescape(l:keymap['name'])
     let s:name_index_dict[l:keymap['name']] = index
-    execute(
-          \"noremap <unique> <silent> <script> <Plug>KeyMapSet_" . l:esc_name . " :call KeyMapSetName('" . l:esc_name . "')<CR>"
-          \)
-    execute(
-          \"noremap! <expr> <unique> <script> <Plug>KeyMapSet_" . l:esc_name . " KeyMapSetName('" . l:esc_name . "')"
-          \)
 
     if !exists('g:keymaps_paste_auto_rotate') && get(l:keymap, 'paste', 0)
       " set paste auto rotate if paste exists in conf
