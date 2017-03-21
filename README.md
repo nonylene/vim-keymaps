@@ -1,5 +1,8 @@
 # vim-keymaps
-[WIP] vim keymap change plugin
+
+keymap switcher for Vim
+
+![ScreenCast](/doc/screencast.gif)
 
 ## Install
 
@@ -9,64 +12,93 @@
 Plug 'nonylene/vim-keymaps'
 ```
 
-## Config
+## Configuration
+
+First, map keys to this plugin as you like.
 
 ```vim
 " map any key to <Plug>KeyMapRotate
+
 map <C-k> <Plug>KeyMapRotate
 imap <C-k> <Plug>KeyMapRotate
 
-" call function to change explicit keymap
+" Call function to change explicit keymap
+
 " noremap <silent> <script> <C-p> :call keymaps#set_keymap("US")<CR>
 " noremap! <expr> <C-p> keymaps#set_keymap("US")
 
-" If you use paste mode, this is recommended
-" set pastetoggle=<C-k>
+" If you will use paste mode, this is recommended
 
-" keymaps
+" set pastetoggle=<C-k>
+```
+
+Keymaps are configured as array of dictionaries.
+
+```vim
 let g:keymaps =  [
       \  {
-      \    'name': 'JP',
+      \    'name': 'first',
       \    'keymap': {
-      \      'noremap!': {
+      \      'noremap': {
       \        '1': '!',
       \        '!': '1',
       \      },
-      \      " You can use <Plug>
-      \      'imap': {
-      \        '2': '<Plug>delimitMate"',
-      \        '7': "<Plug>delimitMate'",
-      \      },
-      \      'cnoremap': {
-      \        '2': '"',
-      \        '7': "'",
+      \      'inoremap': {
+      \        "'": '"',
+      \        '¥': '\',
       \      },
       \    },
       \  },
       \  {
       \    'name': 'second',
       \    'keymap': {
-      \      " XXX: This is executed with plugin's scope.
-      \      "      <SID> also refers plugin's scope.
-      \      'inoremap': {
-      \        '<SID>parenthese': '()<Esc>i',
-      \      },
       \      'cnoremap': {
-      \        '<SID>parenthese': '(',
+      \        '1': '@',
+      \        ':': ';',
+      \        ';': ':',
       \      },
-      \      'noremap! <script>': {
-      \        '8': '<SID>parenthese',
-      \      },
-      \      " Evaluated function must be global.
-      \      'imap <expr>': {
-      \        '1': 'Foo()',
+      \      'inoremap <unique>': {
+      \        '¥': '\|',
       \      },
       \    },
       \  },
       \  {
-      \    'name': 'paste',
-      \    " You can also use paste mode.
+      \    'name': 'paste_mode',
       \    'paste': 1
+      \  },
+      \]
+```
+
+You can use `<Plug>`, `<SID>`, etc .
+
+- IMPORTANT:
+
+`<SID>` refers this plugin's scope because mappings are executed with plugin's scope. For that, functions used for `<expr>` mappings must be global.
+
+```vim
+let g:keymaps =  [
+      \  {
+      \    'name': 'first',
+      \    'keymap': {
+      \      'imap': {
+      \        '2': '<Plug>delimitMate"',
+      \        '7': "<Plug>delimitMate'",
+      \      },
+      \    },
+      \  },
+      \  {
+      \    'name': 'second',
+      \    'keymap': {
+      \      'inoremap': {
+      \        '<SID>parenthese': '()<Esc>i',
+      \      },
+      \      'noremap! <script>': {
+      \        '8': '<SID>parenthese',
+      \      },
+      \      'imap <expr>': {
+      \        '1': 'Foo()',
+      \      },
+      \    },
       \  },
       \]
 ```
@@ -85,21 +117,21 @@ Rotate keymap after exit paste mode (using hook OptionChange).
 
 First used keymap name. If not set, first keymap in array will be used.
 
-## Command
+## Commands
 
 - `KeyMapRotate`
 
-Change to next keymap.
+Switch to next keymap.
 
 - `KeyMapSet <keymap_name>`
 
-Change to explicit keymap.
+Switch to explicit keymap.
 
 ## Tips
 
-- get current keymap name
+- Get current keymap name
 
-`call keymaps#get_current_keymap_name`
+`:call keymaps#get_current_keymap_name`
 
 ## License
 
