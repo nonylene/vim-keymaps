@@ -24,7 +24,7 @@ First, map keys to this plugin as you like.
 map <C-k> <Plug>KeyMapRotate
 imap <C-k> <Plug>KeyMapRotate
 
-" Call function to change explicit keymap
+" Call function in order to switch to explicit keymap
 
 " noremap <silent> <script> <C-p> :call keymaps#set_keymap("US")<CR>
 " noremap! <expr> <C-p> keymaps#set_keymap("US")
@@ -111,7 +111,7 @@ let g:keymaps =  [
 
 Unmap prev keymaps before do mapping.
 
-- `g:keymaps_nopaste_auto_rotate` (default: 1 (if `'paste': 1` exists) / 0)
+- `g:keymaps_paste_auto_rotate` (default: 1 (if `'paste': 1` exists) / 0)
 
 Rotate keymap after exit paste mode (using hook OptionChange). 
 
