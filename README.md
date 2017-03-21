@@ -17,11 +17,11 @@ map <C-k> <Plug>KeyMapRotate
 imap <C-k> <Plug>KeyMapRotate
 
 " call function to change explicit keymap
-noremap <silent> <script> <C-u> :call KeyMapSetName("US")<CR>
-noremap! <expr> <C-u> KeyMapSetName("US")
+" noremap <silent> <script> <C-p> :call keymaps#set_keymap("US")<CR>
+" noremap! <expr> <C-p> keymaps#set_keymap("US")
 
 " If you use paste mode, this is recommended
-set pastetoggle=<C-k>
+" set pastetoggle=<C-k>
 
 " keymaps
 let g:keymaps =  [
@@ -73,18 +73,17 @@ let g:keymaps =  [
 
 ## Other options
 
-- `g:keymaps_unmap_keys (default: 1)`
+- `g:keymaps_unmap_keys` (default: 1)
 
 Unmap prev keymaps before do mapping.
 
-- `g:keymaps_nopaste_auto_rotate (default: 1 (if "'paste': 1" exists) / 0)`
+- `g:keymaps_nopaste_auto_rotate` (default: 1 (if `'paste': 1` exists) / 0)
 
 Rotate keymap after exit paste mode (using hook OptionChange). 
 
 - `g:keymaps_default`
 
 First used keymap name. If not set, first keymap in array will be used.
-
 
 ## Command
 
@@ -95,6 +94,12 @@ Change to next keymap.
 - `KeyMapSet <keymap_name>`
 
 Change to explicit keymap.
+
+## Tips
+
+- get current keymap name
+
+`call keymaps#get_current_keymap_name`
 
 ## License
 
