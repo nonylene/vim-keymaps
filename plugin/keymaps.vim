@@ -35,9 +35,9 @@ augroup keymaps
 augroup END
 
 function! s:on_change_paste()
-  echo v:option_new
   " sometimes v:option_new not working
-  if g:keymaps_paste_auto_rotate && !&paste && keymaps#get_current_keymap_name() is "paste"
+  if g:keymaps_paste_auto_rotate && !&paste
+        \ && get(keymaps#get_current_keymap(), 'paste', 0)
     " exit paste mode -> rotate
     call keymaps#rotate_keymap()
   endif

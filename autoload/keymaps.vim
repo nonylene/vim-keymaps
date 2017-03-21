@@ -41,8 +41,8 @@ function! keymaps#init()
     let s:current_keymap_index = s:name_index_dict[g:keymaps_default]
   endif
 
-  if !exists('g:keymaps_nopaste_auto_rotate')
-    let g:keymaps_nopaste_auto_rotate = 0
+  if !exists('g:keymaps_paste_auto_rotate')
+    let g:keymaps_paste_auto_rotate = 0
   endif
 
   if !exists('g:keymaps_unmap_keys')
@@ -52,7 +52,6 @@ function! keymaps#init()
   " initial -> not loading
   call s:set_keymap_index(s:current_keymap_index, 0)
 endfunction
-
 
 " rotate keymap
 function! keymaps#rotate_keymap()
@@ -66,9 +65,12 @@ function! keymaps#rotate_keymap()
 endfunction
 
 function! keymaps#get_current_keymap_name()
-  return g:keymaps[s:current_keymap_index]["name"]
+  return keymaps#get_current_keymap()["name"]
 endfunction
 
+function! keymaps#get_current_keymap()
+  return g:keymaps[s:current_keymap_index]
+endfunction
 
 function! keymaps#set_keymap(name)
   call s:set_keymap_index(s:name_index_dict[a:name], g:keymaps_unmap_keys)
