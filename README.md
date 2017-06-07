@@ -115,6 +115,8 @@ Unmap prev keymaps before do mapping.
 
 Rotate keymap after exit paste mode (using hook OptionChange). 
 
+"7.4.786" patch is required to enable this feature.
+
 - `g:keymaps_default`
 
 First used keymap name. If not set, first keymap in array will be used.

@@ -29,10 +29,12 @@ if !exists(":KeyMapSet")
 endif
 
 " autocmd
-augroup keymaps
-  autocmd!
-  autocmd OptionSet paste call s:on_change_paste()
-augroup END
+if has('patch-7.4-786')
+  augroup keymaps
+    autocmd!
+    autocmd OptionSet paste call s:on_change_paste()
+  augroup END
+endif
 
 function! s:on_change_paste()
   " sometimes v:option_new not working
