@@ -1,6 +1,6 @@
 # vim-keymaps
 
-keymap switcher for Vim
+Keymap switcher for Vim
 
 ![ScreenCast](/doc/screencast.gif)
 
@@ -139,4 +139,4 @@ Switch to explicit keymap.
 
 ## License
 
-MIT License (see License.md).
+MIT License (see [LICENSE](./LICENSE)).
